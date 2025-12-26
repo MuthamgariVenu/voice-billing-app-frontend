@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="flex min-h-screen bg-gray-100">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="w-56 bg-gray-900 text-white p-5">
+    <h2 class="text-xl font-bold mb-8">Admin</h2>
+
+    <ul class="space-y-4">
+      <li data-page="dashboard">
+        <a href="admin-dashboard.html"
+           class="block text-white font-semibold">
+          Dashboard
+        </a>
+      </li>
+
+      <li data-page="shops">
+        <a href="shops.html"
+           class="block text-gray-300 hover:text-white">
+          Shops
+        </a>
+      </li>
+
+      <li data-page="reports">
+        <a href="reports.html"
+           class="block text-gray-300 hover:text-white">
+          Reports
+        </a>
+      </li>
+
+      <li class="pt-6">
+        <button id="logoutBtn"
+          class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded">
+          Logout
+        </button>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="flex-1 p-6">
+
+    <h1 class="text-2xl font-bold mb-6">Admin Dashboard</h1>
+
+    <!-- ================= STATS ================= -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="text-gray-500">Total Shops</h3>
+        <p id="totalShops" class="text-3xl font-bold">0</p>
+      </div>
+
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="text-gray-500">Active Shops</h3>
+        <p id="activeShops" class="text-3xl font-bold text-green-600">0</p>
+      </div>
+
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="text-gray-500">Inactive Shops</h3>
+        <p id="inactiveShops" class="text-3xl font-bold text-red-600">0</p>
+      </div>
+
+    </div>
+
+    <!-- ================= CHARTS ================= -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Pie Chart -->
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="font-semibold mb-4">Active vs Inactive Shops</h3>
+        <canvas id="statusChart"></canvas>
+      </div>
+
+      <!-- Bar Chart -->
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="font-semibold mb-4">Shops Overview</h3>
+        <canvas id="shopsBarChart"></canvas>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<!-- ================= JS ================= -->
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

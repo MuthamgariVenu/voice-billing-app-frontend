@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Login | Voice Billing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-sm">
+    <h1 class="text-2xl font-bold text-center mb-2">
+      Voice Billing
+    </h1>
+    <p class="text-center text-gray-500 mb-6">
+      Admin Login
+    </p>
+
+    <!-- ERROR MESSAGE -->
+    <div id="errorMsg" class="hidden text-red-600 text-sm mb-3"></div>
+
+    <!-- USERNAME -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Username</label>
+      <input
+        id="username"
+        type="text"
+        class="w-full border rounded px-3 py-2 focus:outline-none focus:ring"
+        placeholder="Enter admin username"
+      />
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="mb-6">
+      <label class="block text-sm font-medium mb-1">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="w-full border rounded px-3 py-2 focus:outline-none focus:ring"
+        placeholder="Enter password"
+      />
+    </div>
+
+    <!-- LOGIN BUTTON -->
+    <button
+      id="loginBtn"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold"
+    >
+      Login
+    </button>
+  </div>
+
+  <script src="admin-login.js"></script>
+</body>
+</html>

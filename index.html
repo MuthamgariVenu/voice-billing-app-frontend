@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bills | Billing App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- ================= HEADER ================= -->
+  <header class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow">
+    <div id="shopName" class="text-lg font-semibold tracking-wide">
+      Kirana Store
+    </div>
+
+    <nav class="flex gap-5 items-center text-sm font-medium">
+      <a href="products.html" class="hover:underline">Products</a>
+      <a href="reports.html" class="hover:underline">Reports</a>
+
+      <!-- ✅ No inline onclick -->
+      <button
+        id="logoutBtn"
+        type="button"
+        class="bg-red-500 hover:bg-red-600 px-4 py-1.5 rounded transition"
+      >
+        Logout
+      </button>
+    </nav>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main class="p-4 max-w-4xl mx-auto">
+
+    <!-- CREATE BILL CARD -->
+    <section class="bg-white shadow rounded-lg p-5 mb-6">
+      <h2 class="text-lg font-semibold mb-4 border-b pb-2">
+        Create New Bill
+      </h2>
+
+      <!-- PRODUCTS TABLE -->
+      <div class="overflow-x-auto">
+        <table class="w-full border text-sm mb-4">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="border p-2 text-left">Product</th>
+              <th class="border p-2 text-right">Price</th>
+              <th class="border p-2 text-center">Stock</th>
+              <th class="border p-2 text-center">Qty</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+            <!-- products will load here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex justify-end">
+        <button
+          id="createBillBtn"
+          type="button"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition"
+        >
+          Create Bill
+        </button>
+      </div>
+    </section>
+
+    <!-- BILLS LIST -->
+    <section id="billsContainer" class="bg-white shadow rounded-lg p-5">
+      <h2 class="text-lg font-semibold mb-2">
+        Recent Bills
+      </h2>
+      <p class="text-gray-500 text-sm">
+        Bills list will appear here.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ================= SCRIPT ================= -->
+  <script src="js/bills.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reports | Kirana Billing</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- JS -->
+  <script src="js/reports.js" defer></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- HEADER -->
+  <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-lg font-semibold" id="shopName">
+      Kirana Store - Reports
+    </h1>
+
+    <div class="space-x-4">
+      <a href="bills.html" class="underline">Billing</a>
+      <button onclick="logout()" class="bg-red-500 px-3 py-1 rounded">
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="p-6 max-w-xl mx-auto bg-white mt-6 rounded shadow">
+
+    <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+      📊 Daily Sales Report
+    </h2>
+
+    <!-- BUTTONS -->
+    <div class="flex gap-3 mb-4">
+      <button
+        id="loadReportBtn"
+        class="bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        Load Today Report
+      </button>
+
+      <button
+        id="voiceBtn"
+        class="bg-green-600 text-white px-4 py-2 rounded"
+      >
+        🎤 Start Voice
+      </button>
+
+      <button
+        id="refreshBtn"
+        class="bg-yellow-500 px-4 py-2 rounded"
+      >
+        Refresh
+      </button>
+    </div>
+
+    <p id="voiceStatus" class="text-sm text-gray-500 mb-2"></p>
+
+    <!-- REPORT BOX -->
+    <div id="reportBox" class="border p-4 rounded hidden">
+      <p><b>Date:</b> <span id="reportDate">-</span></p>
+      <p><b>Total Bills:</b> <span id="totalBills">0</span></p>
+      <p><b>Total Sales:</b> ₹ <span id="totalSales">0</span></p>
+    </div>
+
+    <p id="status" class="text-sm text-gray-500 mt-3"></p>
+  </div>
+
+</body>
+</html>

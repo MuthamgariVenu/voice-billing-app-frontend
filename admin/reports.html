@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Reports</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div class="flex min-h-screen bg-gray-100">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="w-56 bg-gray-900 text-white p-5">
+    <h2 class="text-xl font-bold mb-8">Admin</h2>
+
+    <ul class="space-y-4">
+      <li data-page="dashboard">
+        <a href="admin-dashboard.html" class="block text-gray-300 hover:text-white">
+          Dashboard
+        </a>
+      </li>
+
+      <li data-page="shops">
+        <a href="shops.html" class="block text-gray-300 hover:text-white">
+          Shops
+        </a>
+      </li>
+
+      <li data-page="reports">
+        <a href="reports.html" class="block text-white font-semibold">
+          Reports
+        </a>
+      </li>
+
+      <li class="pt-6">
+        <button id="logoutBtn"
+          class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded">
+          Logout
+        </button>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="flex-1 p-6">
+
+    <h1 class="text-2xl font-bold mb-6">Reports</h1>
+
+    <!-- ================= FILTERS ================= -->
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+        <div>
+          <label class="block text-sm text-gray-600 mb-1">From Date</label>
+          <input type="date" id="fromDate"
+            class="w-full border rounded px-3 py-2" />
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 mb-1">To Date</label>
+          <input type="date" id="toDate"
+            class="w-full border rounded px-3 py-2" />
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-600 mb-1">Status</label>
+          <select id="statusFilter"
+            class="w-full border rounded px-3 py-2">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+
+        <div class="flex items-end">
+          <button id="applyFilters"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
+            Apply Filters
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= SUMMARY ================= -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+
+      <div class="bg-white p-5 rounded shadow">
+        <h3 class="text-gray-500">Total Shops</h3>
+        <p id="totalCount" class="text-3xl font-bold">0</p>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow">
+        <h3 class="text-gray-500">Active Shops</h3>
+        <p id="activeCount" class="text-3xl font-bold text-green-600">0</p>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow">
+        <h3 class="text-gray-500">Inactive Shops</h3>
+        <p id="inactiveCount" class="text-3xl font-bold text-red-600">0</p>
+      </div>
+
+    </div>
+
+    <!-- ================= TABLE ================= -->
+    <div class="bg-white rounded shadow overflow-x-auto">
+      <table class="w-full text-left">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-4 py-3">Shop Name</th>
+            <th class="px-4 py-3">Mobile</th>
+            <th class="px-4 py-3">Status</th>
+            <th class="px-4 py-3">Created Date</th>
+          </tr>
+        </thead>
+
+        <tbody id="reportsTableBody">
+          <tr>
+            <td colspan="4" class="text-center py-6 text-gray-500">
+              Loading reports...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+</div>
+
+<!-- ================= JS ================= -->
+<script src="js/reports.js"></script>
+
+</body>
+</html>

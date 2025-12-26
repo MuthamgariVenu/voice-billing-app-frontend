@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Shops</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+<div class="flex min-h-screen">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="w-56 bg-gray-900 text-white p-5">
+    <h2 class="text-xl font-bold mb-8">Admin</h2>
+
+    <ul class="space-y-4">
+      <li>
+        <a href="admin-dashboard.html" class="block text-gray-300 hover:text-white">
+          Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a href="shops.html" class="block text-white font-semibold">
+          Shops
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="block text-gray-300 hover:text-white">
+          Reports
+        </a>
+      </li>
+
+      <li class="pt-6">
+        <button id="logoutBtn"
+          class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded">
+          Logout
+        </button>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ================= CONTENT ================= -->
+  <main class="flex-1 p-6">
+
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">Manage Shops</h1>
+
+      <button id="openCreateModal"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        + Create Shop
+      </button>
+    </div>
+
+    <!-- ================= TABLE ================= -->
+    <div class="bg-white rounded shadow overflow-x-auto">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="px-4 py-2 text-left">Shop Name</th>
+            <th class="px-4 py-2 text-left">Mobile</th>
+            <th class="px-4 py-2 text-left">Status</th>
+            <th class="px-4 py-2 text-left">Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="shopsTableBody">
+          <!-- populated by shops.js -->
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<!-- ================= CREATE SHOP MODAL ================= -->
+<div id="createShopModal"
+  class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+
+  <div class="bg-white w-full max-w-md rounded-lg p-6">
+    <h2 class="text-xl font-bold mb-4">Create Shop</h2>
+
+    <form id="createShopForm" class="space-y-4">
+
+      <div>
+        <label class="block text-sm font-medium">Shop Name</label>
+        <input id="shopName" class="w-full border px-3 py-2 rounded" required />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Mobile</label>
+        <input id="mobile" class="w-full border px-3 py-2 rounded" required />
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4">
+        <button type="button" id="closeModal" class="px-4 py-2 border rounded">
+          Cancel
+        </button>
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">
+          Create
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script src="js/shops.js"></script>
+</body>
+</html>
