@@ -5,7 +5,7 @@
   <title>Admin Login | Voice Billing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Tailwind -->
+  <!-- Tailwind (OK for now) -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -53,15 +53,11 @@
     </button>
   </div>
 
-  <!-- ❌ OLD -->
-<script src="../js/config.js"></script>
+  <!-- ✅ CONFIG MUST LOAD FIRST -->
+  <script src="/js/config.js"></script>
 
-<!-- ✅ NEW (FINAL) -->
-<script src="/js/config.js"></script>
-
-<script src="admin-login.js"></script>
-
-
+  <!-- ✅ ADMIN LOGIN LOGIC -->
+  <script src="admin-login.js"></script>
 
 </body>
 </html>

@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loginBtn = document.getElementById("loginBtn");
+  const errorMsg = document.getElementById("errorMsg");
 
   loginBtn.addEventListener("click", async () => {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    errorMsg.classList.add("hidden");
+    errorMsg.textContent = "";
 
     if (!username || !password) {
-      alert("Enter username and password");
+      errorMsg.textContent = "Please enter username and password";
+      errorMsg.classList.remove("hidden");
       return;
     }
 
     try {
-      
-    const API_BASE = "https://voice-billing-app-backend.onrender.com/api";
-
-        const res = await fetch(`${API_BASE}/admin/login`, 
-
-         {
+      // 🔥 API_BASE comes from config.js
+      const res = await fetch(`${API_BASE}/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -27,7 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.message || "Login failed");
+        errorMsg.textContent = data.message || "Invalid admin credentials";
+        errorMsg.classList.remove("hidden");
         return;
       }
 
@@ -38,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "admin-dashboard.html";
 
     } catch (err) {
-      console.error(err);
-      alert("Server error");
+      console.error("Admin login error:", err);
+      errorMsg.textContent = "Server error. Please try again later.";
+      errorMsg.classList.remove("hidden");
     }
   });
 });
