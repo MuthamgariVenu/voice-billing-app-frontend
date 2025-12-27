@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       
-    
+    const API_BASE = "https://voice-billing-app-backend.onrender.com/api";
+
         const res = await fetch(`${API_BASE}/admin/login`, 
 
          {
