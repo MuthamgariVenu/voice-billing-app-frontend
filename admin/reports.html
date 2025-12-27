@@ -16,19 +16,19 @@
     <h2 class="text-xl font-bold mb-8">Admin</h2>
 
     <ul class="space-y-4">
-      <li data-page="dashboard">
+      <li>
         <a href="admin-dashboard.html" class="block text-gray-300 hover:text-white">
           Dashboard
         </a>
       </li>
 
-      <li data-page="shops">
+      <li>
         <a href="shops.html" class="block text-gray-300 hover:text-white">
           Shops
         </a>
       </li>
 
-      <li data-page="reports">
+      <li>
         <a href="reports.html" class="block text-white font-semibold">
           Reports
         </a>
@@ -131,7 +131,12 @@
 </div>
 
 <!-- ================= JS ================= -->
-<script src="js/reports.js"></script>
+
+<!-- ✅ COMMON CONFIG FIRST -->
+<script src="/js/config.js"></script>
+
+<!-- ✅ REPORTS LOGIC -->
+<script src="/admin/js/reports.js"></script>
 
 </body>
 </html>

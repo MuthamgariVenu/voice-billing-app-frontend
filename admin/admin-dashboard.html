@@ -19,21 +19,21 @@
     <h2 class="text-xl font-bold mb-8">Admin</h2>
 
     <ul class="space-y-4">
-      <li data-page="dashboard">
+      <li>
         <a href="admin-dashboard.html"
            class="block text-white font-semibold">
           Dashboard
         </a>
       </li>
 
-      <li data-page="shops">
+      <li>
         <a href="shops.html"
            class="block text-gray-300 hover:text-white">
           Shops
         </a>
       </li>
 
-      <li data-page="reports">
+      <li>
         <a href="reports.html"
            class="block text-gray-300 hover:text-white">
           Reports
@@ -77,13 +77,11 @@
     <!-- ================= CHARTS ================= -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <!-- Pie Chart -->
       <div class="bg-white p-6 rounded shadow">
         <h3 class="font-semibold mb-4">Active vs Inactive Shops</h3>
         <canvas id="statusChart"></canvas>
       </div>
 
-      <!-- Bar Chart -->
       <div class="bg-white p-6 rounded shadow">
         <h3 class="font-semibold mb-4">Shops Overview</h3>
         <canvas id="shopsBarChart"></canvas>
@@ -96,7 +94,12 @@
 </div>
 
 <!-- ================= JS ================= -->
-<script src="js/dashboard.js"></script>
+
+<!-- ✅ COMMON CONFIG FIRST -->
+<script src="/js/config.js"></script>
+
+<!-- ✅ DASHBOARD LOGIC -->
+<script src="/admin/js/dashboard.js"></script>
 
 </body>
 </html>
