@@ -225,33 +225,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ================= PDF DOWNLOAD =================
-  window.downloadPDF = async (billId) => {
-    try {
-      const res = await fetch(`${API_BASE}/bills/${billId}/pdf`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      if (!res.ok) {
-        alert("Failed to download PDF");
-        return;
+ window.downloadPDF = async (billId) => {
+  try {
+    const res = await fetch(`${API_BASE}/bills/${billId}/pdf`, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
+    });
 
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
+    if (!res.ok) {
+      alert("Failed to get PDF");
+      return;
+    }
 
+    const blob = await res.blob();
+    const pdfUrl = URL.createObjectURL(blob);
+
+    // 📱 Mobile detection
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // ✅ MOBILE → OPEN PDF
+      window.open(pdfUrl, "_blank");
+    } else {
+      // ✅ DESKTOP → DOWNLOAD
       const a = document.createElement("a");
-      a.href = url;
+      a.href = pdfUrl;
       a.download = `bill_${billId}.pdf`;
       document.body.appendChild(a);
       a.click();
-
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-
-    } catch (err) {
-      console.error("PDF download error:", err);
-      alert("Failed to download PDF");
     }
-  };
+
+    // cleanup
+    setTimeout(() => URL.revokeObjectURL(pdfUrl), 5000);
+
+  } catch (err) {
+    console.error("PDF error:", err);
+    alert("Unable to open PDF");
+  }
+};
+
 
 });

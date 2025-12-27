@@ -113,12 +113,28 @@
 
   const rec = new SR();
   rec.lang = "en-IN";
+  rec.continuous = false;
+
+  let isListening = false;
+  let manuallyStopped = false;
 
   voiceBtn.onclick = () => {
-    statusEl.textContent = "🎤 Listening… say: rice 2 onion 1";
-    rec.start(); // ✅ USER CLICK → MOBILE ALLOWED
+    if (!isListening) {
+      manuallyStopped = false;
+      isListening = true;
+      voiceBtn.textContent = "⏹ Stop Voice";
+      statusEl.textContent = "🎤 Listening...";
+      rec.start();
+    } else {
+      manuallyStopped = true;
+      isListening = false;
+      voiceBtn.textContent = "🎤 Start Voice";
+      statusEl.textContent = "Voice stopped";
+      rec.stop();
+    }
   };
 
+  // 🔥 UPDATED RESULT HANDLER (AUTO ADD QTY)
   rec.onresult = e => {
     const text = e.results[0][0].transcript.toLowerCase();
     statusEl.textContent = `Heard: "${text}"`;
@@ -128,13 +144,24 @@
 
       if (text.includes(productName)) {
         const qtyMatch = text.match(/\d+/);
-        if (qtyMatch) {
-          const qtyInput = row.querySelector(".qtyInput");
-          qtyInput.value = qtyMatch[0];
-          qtyInput.dispatchEvent(new Event("input"));
-        }
+        if (!qtyMatch) return;
+
+        const qtyInput = row.querySelector(".qtyInput");
+        const currentQty = Number(qtyInput.value) || 0;
+        const spokenQty = Number(qtyMatch[0]);
+
+        // ✅ AUTO ADD (INCREMENT)
+        qtyInput.value = currentQty + spokenQty;
+        qtyInput.dispatchEvent(new Event("input")); // updates total + items
       }
     });
+  };
+
+  // 🔁 KEEP LISTENING UNTIL USER STOPS
+  rec.onend = () => {
+    if (!manuallyStopped && isListening) {
+      rec.start();
+    }
   };
 })();
 </script>
