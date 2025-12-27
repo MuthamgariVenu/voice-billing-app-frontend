@@ -4,112 +4,118 @@
   <meta charset="UTF-8" />
   <title>Products | Billing App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 min-h-screen">
 
-  <!-- ================= HEADER ================= -->
-  <header class="bg-blue-600 text-white px-4 py-3 flex justify-between items-center">
-    <h1 class="text-lg font-semibold" id="shopName">Products</h1>
-    <div class="flex gap-2">
-      <a
-        href="bills.html"
-        class="bg-white text-blue-600 px-3 py-1 rounded text-sm"
-      >
-        Bills
-      </a>
-      <button
-        id="logoutBtn"
-        class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm"
-      >
-        Logout
-      </button>
-    </div>
-  </header>
+<header class="bg-blue-600 text-white px-4 py-3 flex justify-between items-center">
+  <h1 class="text-lg font-semibold" id="shopName">Products</h1>
+  <div class="flex gap-2">
+    <a href="bills.html" class="bg-white text-blue-600 px-3 py-1 rounded text-sm">Bills</a>
+    <button id="logoutBtn" class="bg-red-500 px-3 py-1 rounded text-sm">Logout</button>
+  </div>
+</header>
 
-  <!-- ================= MAIN ================= -->
-  <main class="p-4 max-w-5xl mx-auto">
+<main class="p-4 max-w-5xl mx-auto">
 
-    <!-- ADD PRODUCT -->
-    <div class="bg-white shadow rounded p-4 mb-6">
-      <h2 class="text-lg font-semibold mb-4">Add Product</h2>
+<!-- ADD PRODUCT -->
+<div class="bg-white shadow rounded p-4 mb-6">
+  <div class="flex justify-between mb-4">
+    <h2 class="text-lg font-semibold">Add Product</h2>
 
-      <div class="grid gap-4 md:grid-cols-4">
-        <input
-          id="productName"
-          type="text"
-          placeholder="Product Name"
-          class="border p-2 rounded w-full"
-        />
+    <!-- ✅ FIXED ID -->
+    <button
+      id="voiceAddBtn"
+      type="button"
+      class="bg-green-600 text-white px-3 py-1 rounded text-sm">
+      🎤 Add by Voice
+    </button>
+  </div>
 
-        <input
-          id="price"
-          type="number"
-          placeholder="Price"
-          class="border p-2 rounded w-full"
-        />
+  <div class="grid gap-4 md:grid-cols-4">
+    <input id="productName" placeholder="Product Name" class="border p-2 rounded"/>
+    <input id="price" type="number" placeholder="Price" class="border p-2 rounded"/>
+    <input id="stock" type="number" placeholder="Stock" class="border p-2 rounded"/>
+    <select id="unit" class="border p-2 rounded">
+      <option value="">Unit</option>
+      <option value="pcs">Pcs</option>
+      <option value="kg">Kg</option>
+      <option value="ltr">Litre</option>
+    </select>
+  </div>
 
-        <input
-          id="stock"
-          type="number"
-          placeholder="Stock"
-          class="border p-2 rounded w-full"
-        />
+  <button id="addProductBtn" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">
+    Save Product
+  </button>
 
-        <select
-          id="unit"
-          class="border p-2 rounded w-full"
-        >
-          <option value="">Unit</option>
-          <option value="pcs">Pcs</option>
-          <option value="kg">Kg</option>
-          <option value="ltr">Litre</option>
-        </select>
-      </div>
+  <p id="voiceStatus" class="mt-2 text-sm text-gray-500 hidden"></p>
+</div>
 
-      <button
-        id="addProductBtn"
-        class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-      >
-        Save Product
-      </button>
-    </div>
+<!-- PRODUCTS LIST -->
+<div class="bg-white shadow rounded p-4">
+  <h2 class="text-lg font-semibold mb-4">Products List</h2>
 
-    <!-- PRODUCTS LIST -->
-    <div class="bg-white shadow rounded p-4">
-      <h2 class="text-lg font-semibold mb-4">Products List</h2>
+  <table class="w-full border text-sm">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border p-2">Name</th>
+        <th class="border p-2">Price</th>
+        <th class="border p-2">Stock</th>
+        <th class="border p-2">Unit</th>
+        <th class="border p-2">Action</th>
+      </tr>
+    </thead>
+    <tbody id="productsTable"></tbody>
+  </table>
+</div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="border p-2">Name</th>
-              <th class="border p-2">Price</th>
-              <th class="border p-2">Stock</th>
-              <th class="border p-2">Unit</th>
-              <th class="border p-2">Action</th>
-            </tr>
-          </thead>
-          <tbody id="productsTable">
-            <tr>
-              <td colspan="5" class="text-center p-4 text-gray-500">
-                No products added yet
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+</main>
 
-  </main>
+<script src="js/products.js"></script>
 
-  <!-- ================= AUTH + LOGOUT ================= -->
-  
-  <!-- JS (logic will be added next) -->
-  <script src="js/products.js"></script>
+<!-- ================= VOICE LOGIC ================= -->
+<script>
+(function () {
+  const voiceBtn = document.getElementById("voiceAddBtn");
+  const statusEl = document.getElementById("voiceStatus");
+
+  const name = document.getElementById("productName");
+  const price = document.getElementById("price");
+  const stock = document.getElementById("stock");
+  const unit = document.getElementById("unit");
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) return;
+
+  const rec = new SR();
+  rec.lang = "en-IN";
+
+  voiceBtn.onclick = () => {
+    statusEl.textContent = "🎤 Listening… say: onion price 25 stock 80 kg";
+    statusEl.classList.remove("hidden");
+    rec.start();
+  };
+
+  rec.onresult = e => {
+    const t = e.results[0][0].transcript.toLowerCase();
+    statusEl.textContent = `Heard: "${t}"`;
+
+    const w = t.split(" ");
+    name.value = w[0] || "";
+
+    const p = w.indexOf("price");
+    if (p !== -1) price.value = w[p + 1] || "";
+
+    const s = w.indexOf("stock");
+    if (s !== -1) stock.value = w[s + 1] || "";
+
+    if (t.includes("kg")) unit.value = "kg";
+    else if (t.includes("ltr") || t.includes("litre")) unit.value = "ltr";
+    else if (t.includes("pcs")) unit.value = "pcs";
+  };
+})();
+</script>
 
 </body>
 </html>
