@@ -1,5 +1,7 @@
 // ================= GLOBAL =================
-const API_BASE = "http://localhost:5000/api";
+
+const API_BASE = "https://voice-billing-app-backend.onrender.com/api";
+
 let token = null;
 
 // ================= DOM READY =================

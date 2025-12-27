@@ -6,7 +6,12 @@ if (!token) {
 }
 
 // ================= API =================
-const API_BASE = "http://localhost:5000/api/admin";
+fetch(`${API_BASE}/admin/dashboard`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+
 
 // ================= LOGOUT =================
 const logoutBtn = document.getElementById("logoutBtn");

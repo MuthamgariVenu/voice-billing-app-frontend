@@ -12,7 +12,12 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 });
 
 // ================= API BASE =================
-const API_BASE = "http://localhost:5000/api";
+fetch(`${API_BASE}/shops`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
+
 
 // ================= LOAD SHOPS =================
 async function loadShops() {

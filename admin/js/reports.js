@@ -15,7 +15,12 @@ if (logoutBtn) {
 }
 
 // ================= API BASE =================
-const API_BASE = "http://localhost:5000/api";
+fetch(`${API_BASE}/admin/reports`, {
+  headers: {
+    Authorization: `Bearer ${adminToken}`
+  }
+});
+
 
 // ================= DOM ELEMENTS =================
 const tableBody = document.getElementById("reportsTableBody");

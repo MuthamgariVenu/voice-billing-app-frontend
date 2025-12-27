@@ -12,7 +12,9 @@ if (shopName) {
 }
 
 // ================= API BASE =================
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://voice-billing-app-backend.onrender.com/api";
+
+
 
 // ================= ELEMENTS =================
 const nameInput = document.getElementById("productName");
